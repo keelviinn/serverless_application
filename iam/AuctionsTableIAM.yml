@@ -3,4 +3,4 @@ AuctionsTableIAM:
   Action:
     - dynamodb:PutItem
   Resource: 
-    - arn:aws:dynamodb:#{AWS::Region}:#{AWS::Region}:table/AuctionsTable
+    - ${self:custom.AuctionsTable.arn}
