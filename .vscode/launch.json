@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "repos:d:/repos/serverless_application/src/lib/getEndedAuctions.getEndedAuctions (nodejs14.x)",
+      "invokeTarget": {
+        "target": "code",
+        "projectRoot": "\\repos\\serverless_application",
+        "lambdaHandler": "d:/repos/serverless_application/src/lib/getEndedAuctions.getEndedAuctions"
+      },
+      "lambda": {
+        "runtime": "nodejs14.x",
+        "payload": {},
+        "environmentVariables": {}
+      }
+    }
+  ]
+}
