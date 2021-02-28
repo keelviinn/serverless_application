@@ -1,16 +1,15 @@
-import { v4 as uuid } from 'uuid';
-import AWS from 'aws-sdk';
 import createError from 'http-errors';
 import commonMiddleware from '../lib/commonMIddleware';
 import { getAuctionById } from './getAuction'
 
-const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 async function placeBid(event, context) {
   let updatedAuction;
   const { id } = event.pathParameters;
   const { amount } = event.body;
   const auction = await getAuctionById(id);
+  if (auction.status !== 'OPEN') 
+    throw new createError.Forbidden(`You cannot bid on closed auctions - Auction Status: ${auction.status}`)
   if (amount <= auction.highestBid.amount) 
     throw new createError.Forbidden(`Your bid must be higher than ${auction.highestBid.amount}`)
   const params = {

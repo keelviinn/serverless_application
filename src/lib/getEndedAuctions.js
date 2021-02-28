@@ -1,6 +1,4 @@
-import AWS from 'aws-sdk';
-
-const dynamodb = new AWS.DynamoDB.DocumentClient();
+import dynamodb from '../database';
 
 export async function getEndedAuctions() {
   const now = new Date();
