@@ -1,6 +1,8 @@
 import createError from 'http-errors';
+import validator from '@middy/validator';
 import commonMiddleware from '../lib/commonMIddleware';
 import dynamodb from '../database';
+import getAuctionsSchema from '../schemas/getAuctions.schema';
 
 async function getAuctions(event, context) {
   let auctions; 
@@ -31,6 +33,7 @@ async function getAuctions(event, context) {
   };
 }
 
-export const handler = commonMiddleware(getAuctions);
+export const handler = commonMiddleware(getAuctions)
+  .use(validator({ inputSchema: getAuctionsSchema, useDefaults: true }));
 
 
