@@ -1,7 +1,8 @@
 import createError from 'http-errors';
+import validator from '@middy/validator';
 import commonMiddleware from '../lib/commonMIddleware';
-import { getAuctionById } from './getAuction'
-
+import { getAuctionById } from './getAuction';
+import placeBidSchema from '../schemas/placeBid.schema';
 
 async function placeBid(event, context) {
   let updatedAuction;
@@ -33,6 +34,7 @@ async function placeBid(event, context) {
   };
 }
 
-export const handler = commonMiddleware(placeBid);
+export const handler = commonMiddleware(placeBid)
+  .use(validator({ inputSchema: placeBidSchema }));
 
 
