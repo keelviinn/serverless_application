@@ -1,5 +1,6 @@
 import createError from 'http-errors';
 import validator from '@middy/validator';
+import dynamodb from '../database';
 import commonMiddleware from '../lib/commonMIddleware';
 import { getAuctionById } from './getAuction';
 import placeBidSchema from '../schemas/placeBid.schema';
